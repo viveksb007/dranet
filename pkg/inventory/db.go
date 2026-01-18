@@ -398,7 +398,8 @@ func (db *DB) discoverRDMADevices(devices []resourceapi.Device) []resourceapi.De
 
 			// Fallback to sysfs check if rdmamap fails. This is particularly
 			// needed for InfiniBand interfaces where rdmamap has a bug comparing
-			// against node GUID instead of port GUID.
+			// against node GUID instead of port GUID:
+			// https://github.com/Mellanox/rdmamap/issues/15
 			if !isRDMA {
 				isRDMA = hasRDMADeviceInSysfs(*ifName)
 			}
